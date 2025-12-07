@@ -1,3 +1,98 @@
 @import 'tailwindcss';
-@plugin '@tailwindcss/forms';
-@plugin '@tailwindcss/typography';
+/* @plugin '@tailwindcss/forms';
+@plugin '@tailwindcss/typography'; */
+
+/* Custom Dark Theme Color Variables */
+:root {
+	/* Dark Gray Palette */
+	--gray-dark: #0f0f0f;
+	--gray-medium: #282828;
+	--gray-light: #7f7f7f;
+
+	/* Text Color */
+	--text-primary: #eae5da;
+
+	/* Blue Accent */
+	--blue-accent: #4a91ce;
+}
+
+/* Tailwind CSS Custom Colors Configuration */
+@layer utilities {
+	/* Background Utilities */
+	.bg-dark {
+		background-color: var(--gray-dark);
+	}
+	.bg-gray-dark {
+		background-color: var(--gray-dark);
+	}
+	.bg-gray-medium {
+		background-color: var(--gray-medium);
+	}
+	.bg-gray-light {
+		background-color: var(--gray-light);
+	}
+	.bg-blue-accent {
+		background-color: var(--blue-accent);
+	}
+
+	/* Text Utilities */
+	.text-primary {
+		color: var(--text-primary);
+	}
+	.text-gray-dark {
+		color: var(--gray-dark);
+	}
+	.text-gray-medium {
+		color: var(--gray-medium);
+	}
+	.text-gray-light {
+		color: var(--gray-light);
+	}
+	.text-blue-accent {
+		color: var(--blue-accent);
+	}
+
+	/* Border Utilities */
+	.border-gray-dark {
+		border-color: var(--gray-dark);
+	}
+	.border-gray-medium {
+		border-color: var(--gray-medium);
+	}
+	.border-gray-light {
+		border-color: var(--gray-light);
+	}
+	.border-blue-accent {
+		border-color: var(--blue-accent);
+	}
+
+	/* Hover Utilities */
+	.hover\:bg-blue-accent:hover {
+		background-color: var(--blue-accent);
+	}
+	.hover\:text-blue-accent:hover {
+		color: var(--blue-accent);
+	}
+	.hover\:border-blue-accent:hover {
+		border-color: var(--blue-accent);
+	}
+}
+
+/* Global Styles */
+body {
+	background-color: var(--gray-dark);
+	color: var(--text-primary);
+	font-family: 'Figtree', sans-serif;
+	font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+}
+
+/* Selection Colors */
+::selection {
+	background-color: var(--blue-accent);
+	color: var(--text-primary);
+}
+
+::-moz-selection {
+	background-color: var(--blue-accent);
+	color: var(--text-primary);
+}
