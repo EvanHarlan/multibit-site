@@ -47,6 +47,7 @@
 	},
 	"dependencies": {
 		"@stripe/stripe-js": "^8.5.3",
+		"ogl": "^1.0.11",
 		"stripe": "^20.0.0"
 	}
 }
