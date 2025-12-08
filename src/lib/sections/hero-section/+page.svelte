@@ -21,14 +21,14 @@
 	class="relative min-h-screen flex items-center justify-center overflow-hidden bg-primary"
 >
 	<!-- Subtle Aurora Background -->
-	<div class="absolute inset-0 pointer-events-none opacity-[0.08]">
+	<!-- <div class="absolute inset-0 pointer-events-none opacity-[0.08]">
 		<Aurora
 			colorStops={['#4a91ce', '#6ba3d8', '#4a91ce']}
 			blend={0.3}
 			amplitude={0.8}
 			speed={0.4}
 		/>
-	</div>
+	</div> -->
 
 	<!-- Content -->
 	<div class="relative z-10 w-full max-w-5xl mx-auto px-4 py-16 sm:py-24 text-center">

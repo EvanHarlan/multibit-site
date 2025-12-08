@@ -19,14 +19,14 @@
 
 <div class="min-h-screen flex items-center justify-center p-4 bg-primary relative overflow-hidden">
 	<!-- Subtle Aurora Background -->
-	<div class="absolute inset-0 pointer-events-none opacity-[0.08]">
+	<!-- <div class="absolute inset-0 pointer-events-none opacity-[0.08]">
 		<Aurora
 			colorStops={['#ef4444', '#dc2626', '#ef4444']}
 			blend={0.3}
 			amplitude={0.8}
 			speed={0.4}
 		/>
-	</div>
+	</div> -->
 
 	<!-- Content -->
 	<div class="max-w-xl w-full relative z-10 {mounted ? 'fade-in' : 'opacity-0'}">
