@@ -1,12 +1,12 @@
 <script lang="ts">
 	import Navbar from '$lib/components/navbar/+page.svelte';
-	import HeroSection from '$lib/sections/hero-section/+page.svelte';
 	import '../routes/layout.css';
+
+	let { children } = $props();
 </script>
 
 <Navbar />
-<HeroSection />
 
 <main>
-	<slot />
+	{@render children()}
 </main>

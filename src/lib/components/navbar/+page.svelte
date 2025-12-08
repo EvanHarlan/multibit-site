@@ -23,7 +23,7 @@
 	const navLinks: NavLink[] = [
 		{ href: '/', label: 'Home' },
 		{
-			label: 'Frontend',
+			label: 'Learn More',
 			items: [
 				{ label: 'About', href: '/pages/about', description: 'Learn about us' },
 				{ label: 'Services', href: '/pages/services', description: 'What we offer' },
@@ -59,7 +59,8 @@
 	/**
 	 * Toggle dropdown menu on desktop
 	 */
-	function toggleDropdown(label: string) {
+	function toggleDropdown(label: string, event: MouseEvent) {
+		event.stopPropagation();
 		activeDropdown = activeDropdown === label ? null : label;
 	}
 
@@ -90,7 +91,13 @@
 <nav class="bg-primary border-b border-default sticky top-0 z-50 shadow-sm">
 	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 		<div class="flex justify-between items-center h-16">
-			<span class="text-xl font-bold text-primary hidden sm:block">MultiBit</span>
+			<a
+				href="/"
+				class="text-xl font-bold text-primary hidden sm:block hover:text-blue-accent transition-colors"
+			>
+				MultiBit
+			</a>
+
 			<!-- Desktop Navigation -->
 			<div class="hidden md:flex items-center space-x-1">
 				{#each navLinks as link}
@@ -110,10 +117,7 @@
 						<!-- Dropdown menu -->
 						<div class="relative dropdown">
 							<button
-								onclick={(e) => {
-									e.stopPropagation();
-									toggleDropdown(link.label);
-								}}
+								onclick={(e) => toggleDropdown(link.label, e)}
 								class="px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 flex items-center gap-1 {isActive(
 									link
 								)
@@ -219,15 +223,17 @@
 						{:else if link.items}
 							<!-- Accordion for nested items -->
 							<Accordion title={link.label}>
-								{#each link.items as item}
-									<a
-										href={item.href}
-										onclick={closeMobileMenu}
-										class="text-primary hover:text-blue-accent transition-colors"
-									>
-										{item.label}
-									</a>
-								{/each}
+								<div class="space-y-2 py-2">
+									{#each link.items as item}
+										<a
+											href={item.href}
+											onclick={closeMobileMenu}
+											class="block px-4 py-2 text-primary hover:text-blue-accent transition-colors rounded-lg hover:bg-secondary"
+										>
+											{item.label}
+										</a>
+									{/each}
+								</div>
 							</Accordion>
 						{/if}
 					{/each}
