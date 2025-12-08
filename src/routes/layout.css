@@ -2,18 +2,38 @@
 /* @plugin '@tailwindcss/forms';
 @plugin '@tailwindcss/typography'; */
 
-/* Custom Dark Theme Color Variables */
+/* Light Mode (Default) - Clean, Modern Color Scheme */
 :root {
-	/* Dark Gray Palette */
+	/* Light Mode Theme Variables */
+	--bg-primary: #ffffff;
+	--bg-secondary: #f8fafc;
+	--text-primary: #0f172a;
+	--text-secondary: #64748b;
+	--border-color: #e2e8f0;
+	--border-default: #e2e8f0;
+	--blue-accent: #4a91ce;
+
+	/* Legacy variables for backwards compatibility */
 	--gray-dark: #0f0f0f;
 	--gray-medium: #282828;
 	--gray-light: #7f7f7f;
+}
 
-	/* Text Color */
+/* Dark Mode - Your Original Colors */
+.dark {
+	/* Dark Mode Theme Variables */
+	--bg-primary: #0f0f0f;
+	--bg-secondary: #282828;
 	--text-primary: #eae5da;
-
-	/* Blue Accent */
+	--text-secondary: #7f7f7f;
+	--border-color: #3f3f3f;
+	--border-default: #3f3f3f;
 	--blue-accent: #4a91ce;
+
+	/* Legacy variables for backwards compatibility */
+	--gray-dark: #0f0f0f;
+	--gray-medium: #282828;
+	--gray-light: #7f7f7f;
 }
 
 /* Tailwind CSS Custom Colors Configuration */
@@ -21,6 +41,12 @@
 	/* Background Utilities */
 	.bg-dark {
 		background-color: var(--gray-dark);
+	}
+	.bg-primary {
+		background-color: var(--bg-primary);
+	}
+	.bg-secondary {
+		background-color: var(--bg-secondary);
 	}
 	.bg-gray-dark {
 		background-color: var(--gray-dark);
@@ -39,6 +65,9 @@
 	.text-primary {
 		color: var(--text-primary);
 	}
+	.text-secondary {
+		color: var(--text-secondary);
+	}
 	.text-gray-dark {
 		color: var(--gray-dark);
 	}
@@ -53,6 +82,9 @@
 	}
 
 	/* Border Utilities */
+	.border-default {
+		border-color: var(--border-default);
+	}
 	.border-gray-dark {
 		border-color: var(--gray-dark);
 	}
@@ -70,6 +102,9 @@
 	.hover\:bg-blue-accent:hover {
 		background-color: var(--blue-accent);
 	}
+	.hover\:bg-secondary:hover {
+		background-color: var(--bg-secondary);
+	}
 	.hover\:text-blue-accent:hover {
 		color: var(--blue-accent);
 	}
@@ -80,19 +115,29 @@
 
 /* Global Styles */
 body {
-	background-color: var(--gray-dark);
+	background-color: var(--bg-primary);
 	color: var(--text-primary);
 	font-family: 'Figtree', sans-serif;
 	font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+	transition:
+		background-color 0.3s ease,
+		color 0.3s ease;
+}
+
+/* Smooth transitions for theme changes */
+* {
+	transition-property: background-color, border-color, color;
+	transition-duration: 0.3s;
+	transition-timing-function: ease;
 }
 
 /* Selection Colors */
 ::selection {
 	background-color: var(--blue-accent);
-	color: var(--text-primary);
+	color: #ffffff;
 }
 
 ::-moz-selection {
 	background-color: var(--blue-accent);
-	color: var(--text-primary);
+	color: #ffffff;
 }
