@@ -168,12 +168,4 @@
 	.text-error-text {
 		color: #ffffff;
 	}
-
-	.dark .text-error {
-		color: #f87171;
-	}
-
-	.dark .bg-error {
-		background-color: #dc2626;
-	}
 </style>

@@ -149,10 +149,6 @@
 		animation: fadeIn 0.6s ease-out;
 	}
 
-	.bounce-in {
-		animation: bounceIn 0.6s ease-out 0.4s backwards;
-	}
-
 	@keyframes fadeIn {
 		from {
 			opacity: 0;
@@ -201,9 +197,5 @@
 		50% {
 			transform: translateY(8px);
 		}
-	}
-
-	.animate-bounce {
-		animation: bounce 2s ease-in-out infinite;
 	}
 </style>

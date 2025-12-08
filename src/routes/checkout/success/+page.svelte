@@ -138,7 +138,7 @@
 					class="flex items-start gap-3 p-3 bg-error-bg border border-error-border rounded-lg text-sm text-error"
 				>
 					<svg
-						class="w-5 h-5 flex-shrink-0 mt-0.5"
+						class="w-5 h-5 shrink-0 mt-0.5"
 						fill="none"
 						stroke="currentColor"
 						viewBox="0 0 24 24"
@@ -283,17 +283,5 @@
 
 	.text-error {
 		color: rgb(239, 68, 68);
-	}
-
-	.dark .bg-error-bg {
-		background-color: rgba(239, 68, 68, 0.15);
-	}
-
-	.dark .border-error-border {
-		border-color: rgba(239, 68, 68, 0.4);
-	}
-
-	.dark .text-error {
-		color: rgb(248, 113, 113);
 	}
 </style>
