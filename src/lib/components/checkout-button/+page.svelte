@@ -18,10 +18,10 @@
 	 */
 
 	interface Props {
-		/** Stripe price ID */
-		priceId: string;
+		/** Stripe price ID (optional for scroll-only buttons) */
+		priceId?: string;
 		/** Checkout mode: 'payment' for one-time, 'subscription' for recurring */
-		mode: 'payment' | 'subscription';
+		mode?: 'payment' | 'subscription';
 		/** Visual style variant */
 		variant?: 'primary' | 'secondary' | 'outline';
 		/** Size of the button */
@@ -34,6 +34,8 @@
 		loading?: boolean;
 		/** Custom CSS classes */
 		class?: string;
+		/** Custom onclick handler (overrides checkout behavior) */
+		onclick?: () => void;
 		/** Button content */
 		children: Snippet;
 	}
@@ -47,6 +49,7 @@
 		disabled = false,
 		loading = $bindable(false),
 		class: className = '',
+		onclick,
 		children
 	}: Props = $props();
 
@@ -55,6 +58,18 @@
 	 */
 	async function handleCheckout() {
 		if (disabled || loading) return;
+
+		// If custom onclick is provided, use that instead
+		if (onclick) {
+			onclick();
+			return;
+		}
+
+		// Otherwise, proceed with checkout
+		if (!priceId || !mode) {
+			console.error('priceId and mode are required for checkout');
+			return;
+		}
 
 		loading = true;
 
@@ -91,17 +106,16 @@
 
 	// Compute classes based on props
 	const variantClasses = {
-		primary:
-			'bg-blue-accent hover:opacity-90 text-white border-transparent shadow-sm hover:shadow-md',
-		secondary: 'bg-secondary hover:bg-gray-medium text-primary border-default',
+		primary: 'bg-primary-invert text-primary-invert hover:opacity-90 border-transparent shadow-sm',
+		secondary: 'bg-primary border-default text-primary hover:bg-secondary',
 		outline:
 			'bg-transparent hover:bg-secondary text-primary border-default hover:border-blue-accent'
 	};
 
 	const sizeClasses = {
-		sm: 'px-3 py-1.5 text-sm',
-		md: 'px-4 py-2 text-base',
-		lg: 'px-6 py-3 text-lg'
+		sm: 'px-4 py-2 text-sm',
+		md: 'px-8 py-4 text-base',
+		lg: 'px-10 py-5 text-lg'
 	};
 
 	const baseClasses =
@@ -112,7 +126,7 @@
 <button
 	onclick={handleCheckout}
 	disabled={disabled || loading}
-	class="{baseClasses} {variantClasses[variant]} {sizeClasses[
+	class="cursor-pointer {baseClasses} {variantClasses[variant]} {sizeClasses[
 		size
 	]} {responsiveClasses} {className}"
 	aria-busy={loading}
@@ -148,6 +162,15 @@
 	/* Ripple effect on click */
 	button:active:not(:disabled) {
 		transform: scale(0.98);
+	}
+
+	/* Inverted button styles for primary variant */
+	.bg-primary-invert {
+		background-color: var(--text-primary);
+	}
+
+	.text-primary-invert {
+		color: var(--bg-primary);
 	}
 
 	@keyframes spin {

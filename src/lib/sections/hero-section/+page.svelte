@@ -1,6 +1,9 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import Aurora from '$lib/components/aurora/+page.svelte';
+	import CheckoutButton from '$lib/components/checkout-button/+page.svelte';
+	const LIFETIME_PRICE_ID = 'price_1SbWy0RtXHUOYVOaVuxALYO8';
+	const MONTHLY_PRICE_ID = 'price_1SbWzBRtXHUOYVOaFXpWIwdw';
 
 	let mounted = $state(false);
 
@@ -48,18 +51,18 @@
 
 			<!-- CTA Buttons -->
 			<div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-20 sm:mb-32">
-				<button
-					onclick={() => scrollToSection('features')}
-					class="w-full sm:w-auto px-8 py-4 bg-primary-invert text-primary-invert rounded-lg font-medium transition-all hover:opacity-90"
+				<CheckoutButton priceId={LIFETIME_PRICE_ID} mode="payment" variant="primary" size="lg">
+					Buy Lifetime Access
+				</CheckoutButton>
+
+				<CheckoutButton
+					priceId={MONTHLY_PRICE_ID}
+					mode="subscription"
+					variant="secondary"
+					size="lg"
 				>
-					Get Started
-				</button>
-				<button
-					onclick={() => scrollToSection('pricing')}
-					class="w-full sm:w-auto px-8 py-4 bg-primary border border-default rounded-lg font-medium text-primary transition-all hover:bg-secondary"
-				>
-					View Pricing
-				</button>
+					Buy Monthly Access
+				</CheckoutButton>
 			</div>
 
 			<!-- Feature Highlights - Hidden on Mobile -->
@@ -122,25 +125,6 @@
 				</div>
 			</div>
 		</div>
-
-		<!-- Scroll Indicator -->
-		<!-- <div class="absolute bottom-8 left-1/2 -translate-x-1/2 {mounted ? 'bounce-in' : 'opacity-0'}">
-			<button
-				onclick={() => scrollToSection('features')}
-				class="flex flex-col items-center gap-2 text-secondary hover:text-primary transition-colors"
-				aria-label="Scroll to next section"
-			>
-				<span class="text-sm">Scroll to explore</span>
-				<svg class="w-6 h-6 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-					<path
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						stroke-width="2"
-						d="M19 14l-7 7m0 0l-7-7m7 7V3"
-					/>
-				</svg>
-			</button>
-		</div> -->
 	</div>
 </section>
 
@@ -160,42 +144,11 @@
 		}
 	}
 
-	@keyframes bounceIn {
-		from {
-			opacity: 0;
-			transform: translateY(-20px);
-		}
-		to {
-			opacity: 1;
-			transform: translateY(0);
-		}
-	}
-
 	.hover-lift {
 		transition: transform 0.2s ease;
 	}
 
 	.hover-lift:hover {
 		transform: translateY(-4px);
-	}
-
-	/* Inverted button styles */
-	.bg-primary-invert {
-		background-color: var(--text-primary);
-	}
-
-	.text-primary-invert {
-		color: var(--bg-primary);
-	}
-
-	/* Smooth bounce animation for scroll indicator */
-	@keyframes bounce {
-		0%,
-		100% {
-			transform: translateY(0);
-		}
-		50% {
-			transform: translateY(8px);
-		}
 	}
 </style>
